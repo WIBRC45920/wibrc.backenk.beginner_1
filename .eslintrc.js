@@ -82,5 +82,9 @@ module.exports = {
     "space-before-blocks": 2,
     "space-before-function-paren": "off",
     "space-in-parens": ["error", "never"],
+    "object-property-newline": "error",
+    "max-lines": ["error", 200],
+    "max-lines-per-function": ["error", 25],
+    "max-params": ["error", 2],
   }
 };
