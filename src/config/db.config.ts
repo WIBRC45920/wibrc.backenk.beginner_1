@@ -8,3 +8,4 @@ const sequelizeInstance = new Sequelize("sqlite::memory:", {
 });
 
 export { sequelizeInstance };
+//process.env.Variable_name

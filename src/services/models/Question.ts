@@ -1,10 +1,10 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelizeInstance } from "../../config/db.config";
-import { UserStatusDTO } from "../types/UserDTO";
+import { QuestionStatusDTO } from "../types/QuestionDTO";
 
-class User extends Model {}
+class Question extends Model {}
 
-User.init(
+Question.init(
   {
     user_id: {
       type: DataTypes.UUID,
@@ -13,37 +13,27 @@ User.init(
       unique: true,
       defaultValue: DataTypes.UUIDV4,
     },
-    firsName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    lastName: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
     },
     status: {
-      type: DataTypes.ENUM(UserStatusDTO.ADMIN, UserStatusDTO.USER),
+      type: DataTypes.ENUM(QuestionStatusDTO.OPEN, QuestionStatusDTO.CLOSED),
       defaultValue: false,
       allowNull: false,
     },
   },
   {
     sequelize: sequelizeInstance,
-    modelName: "User",
+    modelName: "Question",
     timestamps: true, //Allow to add creation date and update date in  the BD
     createdAt: "create_at", //createdAt: false -> to cancel it creation
     updatedAt: "update_at", //updatedAt: false -> to cancel it creation
   }
 );
 
-export { User };
+export { Question };
