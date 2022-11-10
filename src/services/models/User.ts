@@ -3,24 +3,26 @@ import { sequelizeInstance } from "../../config/db.config";
 
 class User extends Model {}
 
-User.init({
-  user_id: {
-    type: DataTypes.UUID,
-    primaryKey: true,
-    allowNull: false,
+User.init(
+  {
+    user_id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      allowNull: false,
+    },
+    firsName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  firsName: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  lastName: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-}, 
-{
-  sequelize: sequelizeInstance,
-  modelName: "User"
-});
+  {
+    sequelize: sequelizeInstance,
+    modelName: "User",
+  }
+);
 
 export { User };

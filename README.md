@@ -35,3 +35,12 @@ npm run build
 ```sh
 npm run lintfix
 ```
+
+## ON Vscode you neet to install 
+
+```sh
+    prettier extention
+    Eslint extention
+
+    configure it [Reference] (https://www.robinwieruch.de/vscode-eslint/) 
+```

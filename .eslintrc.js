@@ -2,22 +2,17 @@ module.exports = {
   env: {
     browser: true,
     commonjs: true,
-    es2021: true
+    es2021: true,
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
-  overrides: [
-  ],
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  overrides: [],
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    ecmaVersion: "latest"
+    ecmaVersion: "latest",
   },
-  plugins: [
-    "@typescript-eslint"
-  ],
+  plugins: ["@typescript-eslint", "prettier"],
   rules: {
+    "prettier/prettier": ["error"],
     "array-bracket-spacing": ["error", "never"],
     "arrow-spacing": 2,
     "class-methods-use-this": 0,
@@ -38,11 +33,7 @@ module.exports = {
         beforeBlockComment: false,
       },
     ],
-    "lines-between-class-members": [
-      "error",
-      "always",
-      { exceptAfterSingleLine: true },
-    ],
+    "lines-between-class-members": ["error", "always", { exceptAfterSingleLine: true }],
     "no-console": "off",
     "no-unused-vars": "off",
     "no-useless-escape": "off",
@@ -86,5 +77,5 @@ module.exports = {
     "max-lines": ["error", 200],
     "max-lines-per-function": ["error", 25],
     "max-params": ["error", 2],
-  }
+  },
 };
