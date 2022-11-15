@@ -1,0 +1,14 @@
+openapi: '3.0.2'
+info:
+  title: HEAPUP REST API
+  description: REST API endpoints for managing the heapup's related resources
+  version: '0.0.0'
+servers:
+  - url: "https"
+  - url: "http"
+paths:
+  /questions:
+    get:
+      responses:
+        '200':
+          description: OK

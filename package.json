@@ -10,7 +10,8 @@
     "build": "rimraf ./build && tsc",
     "start:production": "npm run build && node build/index.js",
     "prepare": "husky install",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "openapi-generate": "openapi  --useOptions --client axios --input ./specs/contrat.yaml --output ./src/services/heapup"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +29,7 @@
     "jest": "~29.3.1",
     "lint-staged": "~13.0.3",
     "nodemon": "~2.0.20",
+    "openapi-typescript-codegen": "~0.23.0",
     "prettier": "~2.7.1",
     "rimraf": "~3.0.2",
     "supertest": "~6.3.1",
@@ -39,5 +41,17 @@
   "dependencies": {
     "sequelize": "~6.25.5",
     "sqlite3": "~5.1.2"
+  },
+   "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint"
+    ],
+    "*.{graphql,json}": [
+      "prettier --write"
+    ]
   }
 }
