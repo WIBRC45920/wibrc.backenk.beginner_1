@@ -1,4 +1,3 @@
-import { sequelizeInstance } from "../config/db.config";
 import { User, Message, Group } from "./models/index";
 
 const isDev = process.env.NODE_ENV === "development";
