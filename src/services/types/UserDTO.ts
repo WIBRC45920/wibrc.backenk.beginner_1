@@ -2,7 +2,7 @@ import { Blob } from "buffer";
 import { Optional } from "sequelize";
 
 export type UserDTO = {
-  id: string;
+  id?: string;
   username: string;
   dateNaiss: Date;
   email: string;

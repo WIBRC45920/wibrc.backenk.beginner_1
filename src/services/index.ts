@@ -3,8 +3,6 @@ import { User, Message, Group } from "./models/index";
 
 const isDev = process.env.NODE_ENV === "development";
 
-console.log(sequelizeInstance.models.User === User);
-
 export const dbInit = (): void => {
   Message.sync({ alter: isDev });
   Group.sync({ alter: isDev });
