@@ -15,5 +15,5 @@ export enum UserStatusDTO {
   USER = "USER",
 }
 
-export interface UserOuput extends Optional<UserDTO, "image"> {}
-export interface UserInput extends Required<UserDTO> {}
+export type UserOuput = Optional<UserDTO, "image">;
+export type UserInput = Required<UserDTO>;

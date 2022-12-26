@@ -1,12 +1,5 @@
 import { Sequelize } from "sequelize";
 
-const dbName = process.env.DB_NAME
-const dbUser = process.env.BD_DEV_USERNAME as string
-const dbHost = process.env.DEV_ORIGIN
-const dbPassword = process.env.BD_DEV_PASSWORD
-
-console.log(dbName);
-
 const sequelizeInstance = new Sequelize({
   logging: console.log,
   password: "chat_app_12345678",

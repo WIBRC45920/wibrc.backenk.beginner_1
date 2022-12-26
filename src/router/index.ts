@@ -6,7 +6,7 @@ const Routes = express();
 Routes.use(cors());
 
 Routes.get("/", (request: Request, response: Response) => {
-    response.send("Hello there");
+  response.send("Hello there");
 });
 
 export { Routes };

@@ -36,7 +36,7 @@ User.init(
     },
     image: {
       type: DataTypes.BLOB,
-      allowNull: true, 
+      allowNull: true,
     },
     status: {
       type: DataTypes.ENUM(UserStatusDTO.ADMIN, UserStatusDTO.USER),
@@ -52,6 +52,5 @@ User.init(
     updatedAt: "update_at", //updatedAt: false -> to cancel it creation
   }
 );
-
 
 export { User };
