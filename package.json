@@ -17,8 +17,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^4.17.15",
     "@types/jest": "~29.2.2",
-    "@types/node": "~18.11.9",
+    "@types/node": "^16.18.10",
     "@typescript-eslint/eslint-plugin": "~5.42.1",
     "@typescript-eslint/parser": "~5.42.1",
     "dotenv": "~16.0.3",
@@ -35,14 +36,19 @@
     "supertest": "~6.3.1",
     "ts-jest": "~29.0.3",
     "ts-node": "~10.9.1",
+    "tslint": "^6.1.3",
     "typescript": "~4.8.4",
     "uuid": "~9.0.0"
   },
   "dependencies": {
+    "axios": "^1.2.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3",
     "sequelize": "~6.25.5",
-    "sqlite3": "~5.1.2"
+    "socket.io": "^4.5.4"
   },
-   "engines": {
+  "engines": {
     "node": ">=16.0.0",
     "npm": ">=8.0.0"
   },

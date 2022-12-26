@@ -1,28 +1,31 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelizeInstance } from "../../config/db.config";
-import { UserStatusDTO } from "../types/UserDTO";
+import { UserStatusDTO } from "../types/index";
+import { Message, Group } from "./index";
 
 class User extends Model {}
 
 User.init(
   {
-    user_id: {
+    id: {
       type: DataTypes.UUID,
       primaryKey: true,
       allowNull: false,
       unique: true,
       defaultValue: DataTypes.UUIDV4,
     },
-    firsName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    lastName: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    dateNaiss: {
+      type: DataTypes.DATE,
       allowNull: false,
       unique: true,
     },
@@ -31,9 +34,13 @@ User.init(
       allowNull: false,
       unique: true,
     },
+    image: {
+      type: DataTypes.BLOB,
+      allowNull: true, 
+    },
     status: {
       type: DataTypes.ENUM(UserStatusDTO.ADMIN, UserStatusDTO.USER),
-      defaultValue: false,
+      defaultValue: UserStatusDTO.USER,
       allowNull: false,
     },
   },
@@ -45,5 +52,6 @@ User.init(
     updatedAt: "update_at", //updatedAt: false -> to cancel it creation
   }
 );
+
 
 export { User };
