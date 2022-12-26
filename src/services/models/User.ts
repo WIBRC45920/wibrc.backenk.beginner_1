@@ -1,7 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelizeInstance } from "../../config/db.config";
 import { UserStatusDTO } from "../types/index";
-import { Message, Group } from "./index";
 
 class User extends Model {}
 
