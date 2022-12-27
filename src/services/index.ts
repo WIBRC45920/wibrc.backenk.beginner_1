@@ -9,11 +9,10 @@ export const dbInit = (): void => {
 
   //USER
   User.hasMany(Message, { foreignKey: "user_pk" });
-  User.belongsToMany(Group, 
-    { 
-     through: User, 
-     foreignKey: "group_pk"
-   });
+  User.belongsToMany(Group, {
+    through: User,
+    foreignKey: "group_pk",
+  });
 
   //MESSAGE
   Message.belongsTo(User, { foreignKey: "user_pk" });
