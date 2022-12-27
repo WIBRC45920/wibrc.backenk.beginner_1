@@ -1,15 +1,15 @@
 import { Blob } from "buffer";
 import { Optional } from "sequelize";
 
-export type UserDTO = {
-  id?: string;
+export interface UserDTO {
+  uid?: string;
   username: string;
   dateNaiss: Date;
   email: string;
   password: string;
   status: UserStatusDTO;
   image?: Blob;
-};
+}
 export enum UserStatusDTO {
   ADMIN = "ADMIN",
   USER = "USER",

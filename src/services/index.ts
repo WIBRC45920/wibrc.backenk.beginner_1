@@ -8,16 +8,18 @@ export const dbInit = (): void => {
   User.sync({ alter: isDev });
 
   //USER
-  User.hasMany(Message);
-  User.belongsToMany(Group, { through: User });
+  User.hasMany(Message, { foreignKey: "user_pk" });
+  User.belongsToMany(Group, 
+    { 
+     through: User, 
+     foreignKey: "group_pk"
+   });
 
   //MESSAGE
-  Message.belongsTo(User);
-  Message.belongsTo(Group);
+  Message.belongsTo(User, { foreignKey: "user_pk" });
+  Message.belongsTo(Group, { foreignKey: "group_pk" });
 
   //GROUP
-  Group.hasMany(User);
-  Group.hasMany(Message);
-
-  //BUG: mamage the generation problem (relation at User level)
+  Group.hasMany(User, { foreignKey: "user_pk" });
+  Group.hasMany(Message, { foreignKey: "group_pk" });
 };

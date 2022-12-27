@@ -5,7 +5,7 @@ class Message extends Model {}
 
 Message.init(
   {
-    id: {
+    uid: {
       type: DataTypes.UUID,
       primaryKey: true,
       allowNull: false,

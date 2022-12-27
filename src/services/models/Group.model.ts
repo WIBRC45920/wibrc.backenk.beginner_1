@@ -2,11 +2,11 @@ import { DataTypes, Model } from "sequelize";
 import { sequelizeInstance } from "../../config/db.config";
 import { GroupType } from "../types/GroupDTO";
 
-export class Group extends Model {}
+export class Groups extends Model {}
 
-Group.init(
+Groups.init(
   {
-    id: {
+    uid: {
       type: DataTypes.UUID,
       primaryKey: true,
       allowNull: false,
@@ -37,7 +37,7 @@ Group.init(
   },
   {
     sequelize: sequelizeInstance,
-    modelName: "Group",
+    modelName: "Groups",
     timestamps: true, //Allow to add creation date and update date in  the BD
     createdAt: "create_at", //createdAt: false -> to cancel it creation
     updatedAt: "update_at", //updatedAt: false -> to cancel it creation
