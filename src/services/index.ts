@@ -18,4 +18,6 @@ export const dbInit = (): void => {
   //GROUP
   Group.hasMany(User);
   Group.hasMany(Message);
+
+  //BUG: mamage the generation problem (relation at User level)
 };

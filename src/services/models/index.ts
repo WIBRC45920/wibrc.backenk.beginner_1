@@ -1,5 +1,5 @@
-import { User } from "./User";
-import { Message } from "./Message";
-import { Group } from "./Group";
+import { User } from "./User.model";
+import { Message } from "./Message.model";
+import { Group } from "./Group.model";
 
 export { User, Message, Group };

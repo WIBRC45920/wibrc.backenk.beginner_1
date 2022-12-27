@@ -1,12 +1,34 @@
-import { socketIoInstance } from "./socket";
 import { createServer } from "http";
-import { Routes } from "./router";
+import express from "express";
+import cors from "cors";
 import { config } from "dotenv";
+import cookieSession from "cookie-session";
+
+import { socketIoInstance } from "./socket";
+import { authRoutes } from "./router";
 import { dbInit } from "./services";
 
 config();
+const app = express();
 
-const Server = createServer(Routes);
+//Middleware
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(
+  cookieSession({
+    name: "bezkoder-session",
+    secret: process.env.COOKIE_SESSION,
+    httpOnly: true,
+  })
+);
+
+app.use("/user", authRoutes);
+const Server = createServer(app);
 
 //socket io instances
 const io = socketIoInstance(Server);
@@ -17,8 +39,8 @@ io.on("connection", (socket) => {
 });
 
 try {
-  Server.listen(process.env.DEV_PORT, () => {
-    console.log(process.env.DEV_BASE_URL);
+  Server.listen(process.env.DEV_PORT || 4000, () => {
+    console.log(process.env.DEV_BASE_URL || "http://localhost:4000");
   });
 } catch (e) {
   console.log("An error occured: " + e);
