@@ -1,5 +1,5 @@
 import { hash, compare } from "bcrypt";
-import { JwtPayload, sign, verify } from "jsonwebtoken";
+import { sign, verify } from "jsonwebtoken";
 
 import { USER_FIELDS_TO_EXTRACT } from "../../extractCode/User.extractCode";
 import { UserDTO } from "../../../types";
@@ -38,21 +38,22 @@ export const generateToken = (payload: Payload): string =>
 export const checkToken = (token: string): Payload | null | string => {
   let parsedToken: Payload | null = null;
   verify(token, JWT_KEY, (err, parsed) => {
-    if(err) {
-      switch(err.name) {
+    if (err) {
+      switch (err.name) {
         case "TokenExpiredError":
           return "Token has expired";
           break;
-       case "JsonWebTokenError":
+        case "JsonWebTokenError":
           return "Invalid token";
           break;
-       case "NotBeforeError":
+        case "NotBeforeError":
           return "Token is not active";
           break;
-          default: "Other Error"
+        default:
+          "Other Error";
           break;
-     }
+      }
     } else parsedToken = parsed as Payload;
-  })
+  });
   return parsedToken;
-}
+};
