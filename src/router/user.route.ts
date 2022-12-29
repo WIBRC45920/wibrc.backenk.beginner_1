@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { AuthController } from "../services/core/controllers/Auth.controller";
+import { AuthController } from "../Services/core/controllers/Auth.controller";
 import {
   assertRequiredRegisterFieldsIsNotEmpty,
   assertRequiredLoginFieldsIsNotEmpty,
-} from "../services/core/controllers/utils";
+} from "../Services/core/controllers/utils";
 
 const authController = new AuthController();
 const authRoutes = Router();

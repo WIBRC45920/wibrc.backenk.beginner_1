@@ -1,3 +1,4 @@
+import "module-alias/register";
 import { createServer } from "http";
 import express from "express";
 import cors from "cors";
@@ -6,7 +7,7 @@ import cookieSession from "cookie-session";
 
 import { socketIoInstance } from "./socket";
 import { authRoutes } from "./router";
-import { dbInit } from "./services";
+import { dbInit } from "./Services";
 
 config();
 const app = express();
