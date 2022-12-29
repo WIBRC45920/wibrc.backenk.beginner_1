@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
+import { validationResult } from "express-validator";
 
 import { User } from "../../models";
 import { UserDTO, UserStatusDTO } from "../../types";
 import { UserService } from "../services/user/User.service";
 import { UserError, ServerError } from "./errors";
 import { USER_FIELDS_TO_EXTRACT } from "../extractCode/User.extractCode";
-import { hashPassword, comparePassword, generateToken } from "../services/user/utils";
+import { hashPassword, comparePassword, generateToken } from "./utils";
 
 export class AuthController {
   useUserService: UserService;
@@ -14,8 +15,17 @@ export class AuthController {
     this.useUserService = new UserService();
   }
 
-  // eslint-disable-next-line max-lines-per-function
   async register(request: Request<UserDTO>, response: Response) {
+    const validator = validationResult(request);
+    if (!validator.isEmpty()) {
+      return response.status(400).send(validator.array({ onlyFirstError: true }).map((error) => error.msg)[0]);
+    }
+
+    const status = request.body.status ? request.body.status : UserStatusDTO.USER;
+    if (![UserStatusDTO.ADMIN, UserStatusDTO.USER].includes(status)) {
+      return response.status(400).send("Wrong user status");
+    }
+
     try {
       const myUserByEmail = await new UserService().findByEmail(request.body.email, USER_FIELDS_TO_EXTRACT.CODE_1);
       if (!myUserByEmail) {
@@ -25,7 +35,6 @@ export class AuthController {
         );
         if (!myUserByUsername) {
           const saltPassword: string = await hashPassword(request.body.password);
-          const status = request.body.status ? request.body.status : UserStatusDTO.USER;
           if ([UserStatusDTO.ADMIN, UserStatusDTO.USER].includes(status)) {
             const newUser = await User.create({
               ...request.body,
@@ -44,6 +53,11 @@ export class AuthController {
   }
 
   async login(request: Request, response: Response) {
+    const loginValidator = validationResult(request);
+    if (!loginValidator.isEmpty()) {
+      return response.status(400).send(loginValidator.array({ onlyFirstError: true }).map((error) => error.msg)[0]);
+    }
+
     try {
       const user = await new UserService().findByEmail(request.body.email, USER_FIELDS_TO_EXTRACT.CODE_2);
       if (user) {
@@ -57,7 +71,7 @@ export class AuthController {
               role: user.getDataValue("status"),
             },
           });
-          response.status(200).setHeader("token", token).send(user.setAttributes("password", null));
+          response.status(200).cookie("token", token).send(user.setAttributes("password", null));
         } else response.status(401).send(UserError.USER_401);
       } else response.status(404).send(UserError.USER_404);
     } catch (error) {

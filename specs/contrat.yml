@@ -1,14 +1,13 @@
 openapi: '3.0.2'
 info:
-  title: HEAPUP REST API
-  description: REST API endpoints for managing the heapup's related resources
+  title: CHAT REST API
+  description: REST API endpoints for managing the chat's related resources
   version: '0.0.0'
 servers:
-  - url: "https"
   - url: "http"
 paths:
-  /questions:
-    get:
+  /user/register:
+    post:
       responses:
-        '200':
+        '201':
           description: OK

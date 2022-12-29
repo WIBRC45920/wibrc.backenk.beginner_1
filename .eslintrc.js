@@ -75,7 +75,7 @@ module.exports = {
     "space-in-parens": ["error", "never"],
     "object-property-newline": "error",
     "max-lines": ["error", 200],
-    "max-lines-per-function": ["error", 25],
+    "max-lines-per-function": ["error", 40],
     "max-params": ["error", 2],
   },
 };
