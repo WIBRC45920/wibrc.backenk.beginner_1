@@ -79,3 +79,8 @@ export class AuthController {
     }
   }
 }
+//use alias to reduce path
+//Document the error messages
+//update login and make some research to see id we need to send `id` or all information
+
+//Research: make some research about inheritance of abstract class in typescript (I encountered an error whe i tried to make it in djangui)
